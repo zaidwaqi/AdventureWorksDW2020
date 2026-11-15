@@ -1,0 +1,2725 @@
+{
+  "database": "AdventureWorksDW2020",
+  "tables": [
+    {
+      "schema": "dbo",
+      "name": "AdventureWorksDWBuildVersion",
+      "columns": [
+        {
+          "name": "DBVersion",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "VersionDate",
+          "type": "datetime",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimAccount",
+      "columns": [
+        {
+          "name": "AccountKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "ParentAccountKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AccountCodeAlternateKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ParentAccountCodeAlternateKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AccountDescription",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AccountType",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Operator",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CustomMemberExpression",
+          "type": "nvarchar(1000)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EmployeeKey_FinancialController",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimCurrency",
+      "columns": [
+        {
+          "name": "CurrencyKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "CurrencyAlternateKey",
+          "type": "nchar(3)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CurrencyName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimCustomer",
+      "columns": [
+        {
+          "name": "CustomerKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "GeographyKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CustomerAlternateKey",
+          "type": "nvarchar(15)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Title",
+          "type": "nvarchar(8)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FirstName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MiddleName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "LastName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "NameStyle",
+          "type": "bit",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "BirthDate",
+          "type": "date",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MaritalStatus",
+          "type": "nchar(1)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Suffix",
+          "type": "nvarchar(10)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Gender",
+          "type": "nvarchar(1)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EmailAddress",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "YearlyIncome",
+          "type": "money",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "TotalChildren",
+          "type": "tinyint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "NumberChildrenAtHome",
+          "type": "tinyint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishEducation",
+          "type": "nvarchar(40)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishEducation",
+          "type": "nvarchar(40)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchEducation",
+          "type": "nvarchar(40)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishOccupation",
+          "type": "nvarchar(100)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishOccupation",
+          "type": "nvarchar(100)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchOccupation",
+          "type": "nvarchar(100)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "HouseOwnerFlag",
+          "type": "nchar(1)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "NumberCarsOwned",
+          "type": "tinyint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AddressLine1",
+          "type": "nvarchar(120)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AddressLine2",
+          "type": "nvarchar(120)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Phone",
+          "type": "nvarchar(20)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DateFirstPurchase",
+          "type": "date",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CommuteDistance",
+          "type": "nvarchar(15)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimDate",
+      "columns": [
+        {
+          "name": "DateKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "FullDateAlternateKey",
+          "type": "date",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DayNumberOfWeek",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishDayNameOfWeek",
+          "type": "nvarchar(10)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishDayNameOfWeek",
+          "type": "nvarchar(10)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchDayNameOfWeek",
+          "type": "nvarchar(10)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DayNumberOfMonth",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DayNumberOfYear",
+          "type": "smallint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "WeekNumberOfYear",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishMonthName",
+          "type": "nvarchar(10)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishMonthName",
+          "type": "nvarchar(10)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchMonthName",
+          "type": "nvarchar(10)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MonthNumberOfYear",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CalendarQuarter",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CalendarYear",
+          "type": "smallint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CalendarSemester",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FiscalQuarter",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FiscalYear",
+          "type": "smallint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FiscalSemester",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimDepartmentGroup",
+      "columns": [
+        {
+          "name": "DepartmentGroupKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "ParentDepartmentGroupKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DepartmentGroupName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimEmployee",
+      "columns": [
+        {
+          "name": "EmployeeKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "ParentEmployeeKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EmployeeNationalIDAlternateKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ParentEmployeeNationalIDAlternateKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FirstName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "LastName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MiddleName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "NameStyle",
+          "type": "bit",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Title",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "HireDate",
+          "type": "date",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "BirthDate",
+          "type": "date",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "LoginID",
+          "type": "nvarchar(256)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EmailAddress",
+          "type": "nvarchar(100)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Phone",
+          "type": "nvarchar(25)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MaritalStatus",
+          "type": "nchar(1)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EmergencyContactName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EmergencyContactPhone",
+          "type": "nvarchar(25)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalariedFlag",
+          "type": "bit",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Gender",
+          "type": "nchar(1)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "PayFrequency",
+          "type": "tinyint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "BaseRate",
+          "type": "money",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "VacationHours",
+          "type": "smallint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SickLeaveHours",
+          "type": "smallint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CurrentFlag",
+          "type": "bit",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesPersonFlag",
+          "type": "bit",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DepartmentName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EmployeePhoto",
+          "type": "varbinary(max)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Position",
+          "type": "nvarchar(100)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimEmployeeSalesTerritory",
+      "columns": [
+        {
+          "name": "EmployeeKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimGeography",
+      "columns": [
+        {
+          "name": "GeographyKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "City",
+          "type": "nvarchar(30)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "StateProvinceCode",
+          "type": "nvarchar(3)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "StateProvinceName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CountryRegionCode",
+          "type": "nvarchar(3)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishCountryRegionName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishCountryRegionName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchCountryRegionName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "PostalCode",
+          "type": "nvarchar(15)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "IpAddressLocator",
+          "type": "nvarchar(15)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimOrganization",
+      "columns": [
+        {
+          "name": "OrganizationKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "ParentOrganizationKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "PercentageOfOwnership",
+          "type": "nvarchar(16)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "OrganizationName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CurrencyKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimProduct",
+      "columns": [
+        {
+          "name": "ProductKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "ProductAlternateKey",
+          "type": "nvarchar(25)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ProductSubcategoryKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "WeightUnitMeasureCode",
+          "type": "nchar(3)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SizeUnitMeasureCode",
+          "type": "nchar(3)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishProductName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishProductName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchProductName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "StandardCost",
+          "type": "money",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FinishedGoodsFlag",
+          "type": "bit",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Color",
+          "type": "nvarchar(15)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SafetyStockLevel",
+          "type": "smallint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ReorderPoint",
+          "type": "smallint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ListPrice",
+          "type": "money",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Size",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SizeRange",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Weight",
+          "type": "float",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DaysToManufacture",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ProductLine",
+          "type": "nchar(2)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DealerPrice",
+          "type": "money",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Class",
+          "type": "nchar(2)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Style",
+          "type": "nchar(2)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ModelName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "LargePhoto",
+          "type": "varbinary(max)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ChineseDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ArabicDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "HebrewDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ThaiDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "GermanDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "JapaneseDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "TurkishDescription",
+          "type": "nvarchar(400)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "StartDate",
+          "type": "datetime",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EndDate",
+          "type": "datetime",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Status",
+          "type": "nvarchar(7)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimProductCategory",
+      "columns": [
+        {
+          "name": "ProductCategoryKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "ProductCategoryAlternateKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishProductCategoryName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishProductCategoryName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchProductCategoryName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimProductSubcategory",
+      "columns": [
+        {
+          "name": "ProductSubcategoryKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "ProductSubcategoryAlternateKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishProductSubcategoryName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishProductSubcategoryName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchProductSubcategoryName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ProductCategoryKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimPromotion",
+      "columns": [
+        {
+          "name": "PromotionKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "PromotionAlternateKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishPromotionName",
+          "type": "nvarchar(255)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishPromotionName",
+          "type": "nvarchar(255)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchPromotionName",
+          "type": "nvarchar(255)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DiscountPct",
+          "type": "float",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishPromotionType",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishPromotionType",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchPromotionType",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EnglishPromotionCategory",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SpanishPromotionCategory",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FrenchPromotionCategory",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "StartDate",
+          "type": "datetime",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EndDate",
+          "type": "datetime",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MinQty",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MaxQty",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimReseller",
+      "columns": [
+        {
+          "name": "ResellerKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "GeographyKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ResellerAlternateKey",
+          "type": "nvarchar(15)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Phone",
+          "type": "nvarchar(25)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "BusinessType",
+          "type": "varchar(20)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ResellerName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "NumberEmployees",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "OrderFrequency",
+          "type": "char(1)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "OrderMonth",
+          "type": "tinyint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "FirstOrderYear",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "LastOrderYear",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ProductLine",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AddressLine1",
+          "type": "nvarchar(60)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AddressLine2",
+          "type": "nvarchar(60)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AnnualSales",
+          "type": "money",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "BankName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MinPaymentType",
+          "type": "tinyint",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "MinPaymentAmount",
+          "type": "money",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AnnualRevenue",
+          "type": "money",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "YearOpened",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimSalesReason",
+      "columns": [
+        {
+          "name": "SalesReasonKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "SalesReasonAlternateKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesReasonName",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesReasonReasonType",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimSalesTerritory",
+      "columns": [
+        {
+          "name": "SalesTerritoryKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryAlternateKey",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryRegion",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "type": "nvarchar(50)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryGroup",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryImage",
+          "type": "varbinary(max)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DimScenario",
+      "columns": [
+        {
+          "name": "ScenarioKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "ScenarioName",
+          "type": "nvarchar(50)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "FactCurrencyRate",
+      "columns": [
+        {
+          "name": "CurrencyKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "Date",
+          "type": "date",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "AverageRate",
+          "type": "decimal(12,6)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EndOfDayRate",
+          "type": "decimal(12,6)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "FactFinance",
+      "columns": [
+        {
+          "name": "FinanceKey",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "Date",
+          "type": "date",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ScenarioKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "AccountKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Amount",
+          "type": "decimal(12,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "FactInternetSales",
+      "columns": [
+        {
+          "name": "SalesOrderNumber",
+          "type": "nvarchar(20)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "SalesOrderLineNumber",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "OrderDate",
+          "type": "date",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DueDate",
+          "type": "date",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ShipDate",
+          "type": "date",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ProductKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CustomerKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "PromotionKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CurrencyKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "OrderQuantity",
+          "type": "smallint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "UnitPrice",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ExtendedAmount",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "UnitPriceDiscountPct",
+          "type": "decimal(9,4)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DiscountAmount",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ProductStandardCost",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "TotalProductCost",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesAmount",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "TaxAmt",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "Freight",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CarrierTrackingNumber",
+          "type": "nvarchar(25)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "CustomerPONumber",
+          "type": "nvarchar(25)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "FactInternetSalesReason",
+      "columns": [
+        {
+          "name": "SalesOrderNumber",
+          "type": "nvarchar(20)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "SalesOrderLineNumber",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "SalesReasonKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "FactProductInventory",
+      "columns": [
+        {
+          "name": "ProductKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "Date",
+          "type": "date",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "UnitCost",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "UnitsIn",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "UnitsOut",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "UnitsBalance",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "FactResellerSales",
+      "columns": [
+        {
+          "name": "SalesOrderNumber",
+          "type": "nvarchar(20)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "SalesOrderLineNumber",
+          "type": "tinyint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "OrderDate",
+          "type": "date",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "DueDate",
+          "type": "date",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ShipDate",
+          "type": "date",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ProductKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "ResellerKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "PromotionKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "EmployeeKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesTerritoryKey",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "OrderQuantity",
+          "type": "smallint",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "UnitPrice",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "TotalProductCost",
+          "type": "decimal(9,2)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "SalesAmount",
+          "type": "decimal(9,2)",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "sysdiagrams",
+      "columns": [
+        {
+          "name": "name",
+          "type": "sysname",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "principal_id",
+          "type": "int",
+          "nullable": false,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "diagram_id",
+          "type": "int",
+          "nullable": false,
+          "identity": true,
+          "primaryKey": true,
+          "default": null
+        },
+        {
+          "name": "version",
+          "type": "int",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        },
+        {
+          "name": "definition",
+          "type": "varbinary(max)",
+          "nullable": true,
+          "identity": false,
+          "primaryKey": false,
+          "default": null
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "FK_DimAccount_DimAccount",
+      "from": "dbo.DimAccount",
+      "to": "dbo.DimAccount",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ParentAccountKey",
+          "to": "AccountKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimAccount_EmployeeKey_FinancialController",
+      "from": "dbo.DimAccount",
+      "to": "dbo.DimEmployee",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "EmployeeKey_FinancialController",
+          "to": "EmployeeKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimCustomer_DimGeography",
+      "from": "dbo.DimCustomer",
+      "to": "dbo.DimGeography",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "GeographyKey",
+          "to": "GeographyKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimDepartmentGroup_DimDepartmentGroup",
+      "from": "dbo.DimDepartmentGroup",
+      "to": "dbo.DimDepartmentGroup",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ParentDepartmentGroupKey",
+          "to": "DepartmentGroupKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimEmployee_DimEmployee",
+      "from": "dbo.DimEmployee",
+      "to": "dbo.DimEmployee",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ParentEmployeeKey",
+          "to": "EmployeeKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimEmployeeSalesTerritory_EmployeeKey",
+      "from": "dbo.DimEmployeeSalesTerritory",
+      "to": "dbo.DimEmployee",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "EmployeeKey",
+          "to": "EmployeeKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimEmployeeSalesTerritory_SalesTerritoryKey",
+      "from": "dbo.DimEmployeeSalesTerritory",
+      "to": "dbo.DimSalesTerritory",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "SalesTerritoryKey",
+          "to": "SalesTerritoryKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimGeography_DimSalesTerritory",
+      "from": "dbo.DimGeography",
+      "to": "dbo.DimSalesTerritory",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "SalesTerritoryKey",
+          "to": "SalesTerritoryKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimOrganization_DimCurrency",
+      "from": "dbo.DimOrganization",
+      "to": "dbo.DimCurrency",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "CurrencyKey",
+          "to": "CurrencyKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimOrganization_DimOrganization",
+      "from": "dbo.DimOrganization",
+      "to": "dbo.DimOrganization",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ParentOrganizationKey",
+          "to": "OrganizationKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimProduct_DimProductSubcategory",
+      "from": "dbo.DimProduct",
+      "to": "dbo.DimProductSubcategory",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ProductSubcategoryKey",
+          "to": "ProductSubcategoryKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimProductSubcategory_DimProductCategory",
+      "from": "dbo.DimProductSubcategory",
+      "to": "dbo.DimProductCategory",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ProductCategoryKey",
+          "to": "ProductCategoryKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_DimReseller_DimGeography",
+      "from": "dbo.DimReseller",
+      "to": "dbo.DimGeography",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "GeographyKey",
+          "to": "GeographyKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactCurrencyRate_DimCurrency",
+      "from": "dbo.FactCurrencyRate",
+      "to": "dbo.DimCurrency",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "CurrencyKey",
+          "to": "CurrencyKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactCurrencyRate_DimDate",
+      "from": "dbo.FactCurrencyRate",
+      "to": "dbo.DimDate",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "Date",
+          "to": "FullDateAlternateKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSales_DimCurrency",
+      "from": "dbo.FactInternetSales",
+      "to": "dbo.DimCurrency",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "CurrencyKey",
+          "to": "CurrencyKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSales_DimCustomer",
+      "from": "dbo.FactInternetSales",
+      "to": "dbo.DimCustomer",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "CustomerKey",
+          "to": "CustomerKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSales_DimDate",
+      "from": "dbo.FactInternetSales",
+      "to": "dbo.DimDate",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "OrderDate",
+          "to": "FullDateAlternateKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSales_DimDate1",
+      "from": "dbo.FactInternetSales",
+      "to": "dbo.DimDate",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ShipDate",
+          "to": "FullDateAlternateKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSales_DimDate2",
+      "from": "dbo.FactInternetSales",
+      "to": "dbo.DimDate",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "DueDate",
+          "to": "FullDateAlternateKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSales_DimProduct",
+      "from": "dbo.FactInternetSales",
+      "to": "dbo.DimProduct",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ProductKey",
+          "to": "ProductKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSales_DimPromotion",
+      "from": "dbo.FactInternetSales",
+      "to": "dbo.DimPromotion",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "PromotionKey",
+          "to": "PromotionKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSales_DimSalesTerritory",
+      "from": "dbo.FactInternetSales",
+      "to": "dbo.DimSalesTerritory",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "SalesTerritoryKey",
+          "to": "SalesTerritoryKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSalesReason_DimSalesReason",
+      "from": "dbo.FactInternetSalesReason",
+      "to": "dbo.DimSalesReason",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "SalesReasonKey",
+          "to": "SalesReasonKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactInternetSalesReason_FactInternetSales",
+      "from": "dbo.FactInternetSalesReason",
+      "to": "dbo.FactInternetSales",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "SalesOrderNumber",
+          "to": "SalesOrderNumber"
+        },
+        {
+          "from": "SalesOrderLineNumber",
+          "to": "SalesOrderLineNumber"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactProductInventory_DimDate",
+      "from": "dbo.FactProductInventory",
+      "to": "dbo.DimDate",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "Date",
+          "to": "FullDateAlternateKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactProductInventory_DimProduct",
+      "from": "dbo.FactProductInventory",
+      "to": "dbo.DimProduct",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ProductKey",
+          "to": "ProductKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactResellerSales_DimDate",
+      "from": "dbo.FactResellerSales",
+      "to": "dbo.DimDate",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "OrderDate",
+          "to": "FullDateAlternateKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactResellerSales_DimDate1",
+      "from": "dbo.FactResellerSales",
+      "to": "dbo.DimDate",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ShipDate",
+          "to": "FullDateAlternateKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactResellerSales_DimEmployee",
+      "from": "dbo.FactResellerSales",
+      "to": "dbo.DimEmployee",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "EmployeeKey",
+          "to": "EmployeeKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactResellerSales_DimProduct",
+      "from": "dbo.FactResellerSales",
+      "to": "dbo.DimProduct",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ProductKey",
+          "to": "ProductKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactResellerSales_DimPromotion",
+      "from": "dbo.FactResellerSales",
+      "to": "dbo.DimPromotion",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "PromotionKey",
+          "to": "PromotionKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactResellerSales_DimReseller",
+      "from": "dbo.FactResellerSales",
+      "to": "dbo.DimReseller",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ResellerKey",
+          "to": "ResellerKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_FactResellerSales_DimSalesTerritory",
+      "from": "dbo.FactResellerSales",
+      "to": "dbo.DimSalesTerritory",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "SalesTerritoryKey",
+          "to": "SalesTerritoryKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_Finance_AccountKey",
+      "from": "dbo.FactFinance",
+      "to": "dbo.DimAccount",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "AccountKey",
+          "to": "AccountKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_Finance_DateKey",
+      "from": "dbo.FactFinance",
+      "to": "dbo.DimDate",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "Date",
+          "to": "FullDateAlternateKey"
+        }
+      ]
+    },
+    {
+      "name": "FK_Finance_ScenarioKey",
+      "from": "dbo.FactFinance",
+      "to": "dbo.DimScenario",
+      "oneToOne": false,
+      "columns": [
+        {
+          "from": "ScenarioKey",
+          "to": "ScenarioKey"
+        }
+      ]
+    }
+  ]
+}
