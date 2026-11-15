@@ -231,10 +231,11 @@
     const fkNames = foreignKeyColumns(key);
     node.shown.forEach((column, index) => {
       const rowY = headerHeight + 17 + index * 20;
-      const badge = column.primaryKey ? "PK" : fkNames.has(column.name) ? "FK" : "";
-      if (badge) group.append(svgElement("text", { x: 13, y: rowY, class: badge === "PK" ? "key-badge pk" : "key-badge fk" }, badge));
+      const isFk = fkNames.has(column.name);
+      if (column.primaryKey) group.append(svgElement("text", { x: 13, y: rowY, class: "key-badge pk" }, "PK"));
+      if (isFk) group.append(svgElement("text", { x: column.primaryKey ? 28 : 13, y: rowY, class: "key-badge fk" }, "FK"));
       group.append(
-        svgElement("text", { x: 36, y: rowY, class: "column-label" }, truncate(column.name, 21)),
+        svgElement("text", { x: 46, y: rowY, class: "column-label" }, truncate(column.name, 19)),
         svgElement("text", { x: width - 11, y: rowY, class: "column-type-label", "text-anchor": "end" }, truncate(column.type, 15)),
       );
       if (index < node.shown.length - 1) {
