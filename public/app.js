@@ -21,7 +21,7 @@
   let relationships = [];
   let nodes = new Map();
   let visibleKeys = null;
-  const picked = new Set(["DimEmployee", "DimEmployeeSalesTerritory", "DimProduct", "DimReseller", "DimSalesTerritory", "FactResellerSales"].map((name) => `dbo.${name}`));
+  const picked = new Set(["DimEmployee", "DimEmployeeSalesTerritory", "DimProduct", "DimProductCategory", "DimProductSubcategory", "DimReseller", "DimSalesTerritory", "FactResellerSales"].map((name) => `dbo.${name}`));
   const pickerButton = document.getElementById("picker-button");
   const pickerMenu = document.getElementById("picker-menu");
   const pickerSearch = document.getElementById("picker-search");
@@ -113,18 +113,50 @@
       const colY = new Array(cols).fill(y + 55);
       headings.push({ schema, y: y + 28, cols });
       const hasFacts = cols === 3 && schemaTables.some(isFact) && schemaTables.some((table) => !isFact(table));
+      const heightOf = (table) => columnHeight(table, shownColumns(table)) + cardGap;
+      const lists = Array.from({ length: cols }, () => []);
+      const listHeight = (list) => list.reduce((sum, table) => sum + heightOf(table), 0);
+      const shortest = (choices) => choices.reduce((best, i) => (listHeight(lists[i]) < listHeight(lists[best]) ? i : best), choices[0]);
+      if (hasFacts) {
+        const keys = new Set(schemaTables.map(tableKey));
+        const related = (table) => relationships.filter((relation) => relation.from !== relation.to
+          && (relation.from === tableKey(table) || relation.to === tableKey(table)))
+          .map((relation) => (relation.from === tableKey(table) ? relation.to : relation.from))
+          .filter((key) => keys.has(key));
+        const byKey = new Map(schemaTables.map((table) => [tableKey(table), table]));
+        const dims = schemaTables.filter((table) => !isFact(table));
+        schemaTables.filter(isFact).forEach((table) => lists[1].push(table));
+        const touchesFact = (table) => related(table).some((key) => isFact(byKey.get(key)));
+        const outer = dims.filter((table) => !touchesFact(table) && related(table).length);
+        dims.filter((table) => !outer.includes(table)).forEach((table) => lists[shortest([0, 2])].push(table));
+        const childCount = new Map();
+        let pending = [...outer];
+        while (pending.length) {
+          const placed = pending.filter((table) => related(table).some((key) => lists[0].includes(byKey.get(key)) || lists[2].includes(byKey.get(key))));
+          if (!placed.length) { pending.forEach((table) => lists[shortest([0, 2])].push(table)); break; }
+          placed.forEach((table) => {
+            const parentKey = related(table).find((key) => lists[0].includes(byKey.get(key)) || lists[2].includes(byKey.get(key)));
+            const parent = byKey.get(parentKey);
+            const list = lists[0].includes(parent) ? lists[0] : lists[2];
+            const count = childCount.get(parentKey) || 0;
+            list.splice(list.indexOf(parent) + 1 + count, 0, table);
+            childCount.set(parentKey, count + 1);
+          });
+          pending = pending.filter((table) => !placed.includes(table));
+        }
+      } else {
+        schemaTables.forEach((table) => lists[shortest([...lists.keys()])].push(table));
+      }
       const factNodes = [];
-      schemaTables.forEach((table) => {
-        const choices = hasFacts ? (isFact(table) ? [1] : [0, 2]) : [...colY.keys()];
-        let c = choices[0];
-        for (const i of choices) if (colY[i] < colY[c]) c = i;
-        const shown = shownColumns(table);
-        const height = columnHeight(table, shown);
-        const key = `${table.schema}.${table.name}`;
-        const node = { x: 30 + c * (laneWidth + laneGap), y: colY[c], width: cardWidth, height, table, shown };
-        nodes.set(key, node);
-        if (hasFacts && c === 1) factNodes.push(node);
-        colY[c] += height + cardGap;
+      lists.forEach((list, c) => {
+        list.forEach((table) => {
+          const shown = shownColumns(table);
+          const height = columnHeight(table, shown);
+          const node = { x: 30 + c * (laneWidth + laneGap), y: colY[c], width: cardWidth, height, table, shown };
+          nodes.set(tableKey(table), node);
+          if (hasFacts && c === 1) factNodes.push(node);
+          colY[c] += height + cardGap;
+        });
       });
       if (factNodes.length) {
         const shift = (Math.max(colY[0], colY[2]) - colY[1]) / 2;
@@ -132,8 +164,7 @@
           factNodes.forEach((node) => { node.y += shift; });
           colY[1] += shift;
         }
-      }
-      y = Math.max(...colY) + 10;
+      }      y = Math.max(...colY) + 10;
     });
 
     const width = Math.max(900, 30 + columnCount * (laneWidth + laneGap));
