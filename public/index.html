@@ -70,6 +70,7 @@
             <div class="toolbar-right">
               <span class="diagram-hint"><span class="hint-dot"></span> Drag to pan <span class="hint-divider">·</span> Scroll to zoom</span>
               <span class="toolbar-separator"></span>
+              <button class="icon-button info-button" id="info-button" title="About AdventureWorks" aria-label="About AdventureWorks" aria-haspopup="dialog"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.2"/><path d="M10 9v5M10 6.2v.1"/></svg></button>
               <button class="icon-button" id="fit-button" title="Fit diagram to view" aria-label="Fit diagram to view"><svg viewBox="0 0 20 20"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg></button>
               <button class="icon-button" id="zoom-out" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.8"/><path d="m13 13 4 4M6 8.5h5"/></svg></button>
               <span class="zoom-level" id="zoom-level">100%</span>
@@ -107,6 +108,75 @@
         <footer class="page-footer"><span>BUILT FOR CURIOUS MINDS</span><span id="last-updated">ADVENTUREWORKS DATA WAREHOUSE</span></footer>
       </main>
     </div>
-    <script src="app.js" defer></script>
+    <div class="modal-backdrop" id="info-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="info-title">
+        <button class="modal-close" id="info-close" aria-label="Close">×</button>
+        <div class="modal-hero">
+          <svg viewBox="0 0 640 220" role="img" aria-label="Illustration of a bicycle shop, a delivery box and a rising sales chart" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe7ff"/><stop offset="1" stop-color="#f6f8ff"/></linearGradient>
+            </defs>
+            <rect width="640" height="220" fill="url(#sky)"/>
+            <circle cx="548" cy="52" r="26" fill="#ffe3a3"/>
+            <path d="M0 168c70-48 120-48 190-6s130 36 210-14 150-34 240 10v62H0z" fill="#cfe0ff"/>
+            <path d="M0 186c90-30 160-24 250 4s170 14 390-16v46H0z" fill="#b7cdf7"/>
+            <rect x="0" y="190" width="640" height="30" fill="#8fa8e0"/>
+            <g transform="translate(60 80)">
+              <rect x="0" y="40" width="130" height="70" fill="#fff" stroke="#7083e9" stroke-width="3"/>
+              <path d="M-8 42 65 6l73 36z" fill="#5874ef"/>
+              <rect x="14" y="62" width="40" height="48" fill="#e8edff" stroke="#7083e9" stroke-width="2"/>
+              <rect x="72" y="60" width="44" height="30" fill="#e8edff" stroke="#7083e9" stroke-width="2"/>
+              <text x="65" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="sans-serif">BIKE SHOP</text>
+            </g>
+            <g transform="translate(250 92)" fill="none" stroke="#202b42" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="30" cy="80" r="26"/><circle cx="130" cy="80" r="26"/>
+              <path d="M30 80 62 30h50l18 50M62 30 80 80h50M62 30l-6-12M44 18h22M108 30l-4-14h14" stroke="#5874ef"/>
+              <path d="M80 80 62 30" /><circle cx="80" cy="80" r="5" fill="#202b42"/>
+            </g>
+            <g transform="translate(440 112)">
+              <rect width="62" height="52" fill="#e3b778" stroke="#a97c3a" stroke-width="3"/>
+              <path d="M0 16h62M26 0v16h10V0" stroke="#a97c3a" stroke-width="3" fill="none"/>
+            </g>
+            <g transform="translate(520 70)">
+              <rect width="100" height="100" rx="10" fill="#fff" stroke="#d6def0" stroke-width="2"/>
+              <rect x="14" y="62" width="14" height="26" fill="#9fb2f5"/><rect x="35" y="48" width="14" height="40" fill="#7f95f0"/>
+              <rect x="56" y="34" width="14" height="54" fill="#5874ef"/><rect x="77" y="18" width="14" height="70" fill="#3dbd9a"/>
+              <path d="M14 56 40 40 62 28 86 12" fill="none" stroke="#202b42" stroke-width="2.5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="modal-body">
+          <h2 id="info-title">About AdventureWorks</h2>
+
+          <h3>Business background</h3>
+          <p>Adventure Works Cycles is a fictional, large multinational bicycle manufacturer. It makes and sells metal and composite bikes to North American, European and Asian markets, along with components, clothing and accessories. Its sales come through two channels: <strong>resellers</strong> (bike shops and retail partners buying in volume) and <strong>internet</strong> (direct to consumers). <strong>AdventureWorksDW2020</strong> is the data warehouse built for reporting on these sales. It uses a star schema, with fact tables holding the transactions and dimension tables holding the descriptive context, and the product dimension is snowflaked into subcategory and category.</p>
+
+          <h3>Important tables <span class="modal-note">pre-selected in this diagram</span></h3>
+          <dl class="modal-tables">
+            <div><dt>FactResellerSales <em>fact</em></dt><dd>One row per reseller order line (<code>SalesOrderNumber</code> + <code>SalesOrderLineNumber</code>). Holds order quantity, unit price, total product cost and sales amount, and links to product, reseller, employee, promotion, sales territory and the order, due and ship dates.</dd></div>
+            <div><dt>DimProduct <em>dimension</em></dt><dd>The product catalogue: name, model, colour, size, standard cost, list price, dealer price and product line. Each product belongs to a subcategory.</dd></div>
+            <div><dt>DimProductSubcategory <em>dimension</em></dt><dd>The middle level of the product hierarchy, for example Mountain Bikes, Road Bikes, Helmets or Jerseys. It links each product to its category.</dd></div>
+            <div><dt>DimProductCategory <em>dimension</em></dt><dd>The top level of the product hierarchy: Bikes, Components, Clothing and Accessories. Together with the subcategory it makes the snowflake.</dd></div>
+            <div><dt>DimReseller <em>dimension</em></dt><dd>The businesses that buy for resale: business type (such as Warehouse, Value Added Reseller or Specialty Bike Shop), product line, number of employees, year opened and annual sales and revenue.</dd></div>
+            <div><dt>DimEmployee <em>dimension</em></dt><dd>Staff, including the sales people who handle reseller orders: name, title, department, hire date and a sales-person flag. <code>ParentEmployeeKey</code> points to the employee's manager, which gives the reporting hierarchy.</dd></div>
+            <div><dt>DimSalesTerritory <em>dimension</em></dt><dd>The sales regions: region, country and group (North America, Europe, Pacific), used to compare performance geographically.</dd></div>
+            <div><dt>DimEmployeeSalesTerritory <em>bridge</em></dt><dd>Resolves the many-to-many link between employees and territories, since a sales person can cover several territories and a territory can have several sales people. Its key is both <code>EmployeeKey</code> and <code>SalesTerritoryKey</code>.</dd></div>
+          </dl>
+          <p class="modal-aside">Other tables in the warehouse, not pre-selected, include FactInternetSales (online orders), DimCustomer, DimDate, DimPromotion, DimCurrency, DimGeography and the finance tables.</p>
+
+          <h3>Key performance metrics</h3>
+          <ul class="modal-metrics">
+            <li><strong>Sales amount</strong> <span>Sum of <code>SalesAmount</code>, the total reseller revenue.</span></li>
+            <li><strong>Total product cost</strong> <span>Sum of <code>TotalProductCost</code>, what the goods sold cost to produce.</span></li>
+            <li><strong>Gross margin</strong> <span>Sales amount minus total product cost.</span></li>
+            <li><strong>Gross margin %</strong> <span>Gross margin divided by sales amount; shows how profitable each product line is.</span></li>
+            <li><strong>Units sold</strong> <span>Sum of <code>OrderQuantity</code>.</span></li>
+            <li><strong>Average selling price</strong> <span>Sales amount divided by units sold; compare it with <code>ListPrice</code> and <code>DealerPrice</code> to see discounting.</span></li>
+            <li><strong>Orders and average order value</strong> <span>Distinct count of <code>SalesOrderNumber</code>, and sales amount divided by that count.</span></li>
+            <li><strong>Sales by dimension</strong> <span>Any of the above broken down by product category, reseller business type, sales territory or sales person, and trended by order date.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>    <script src="app.js" defer></script>
   </body>
 </html>

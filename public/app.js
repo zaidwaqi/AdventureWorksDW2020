@@ -476,6 +476,18 @@
     pickerChanged();
   });
 
+  const infoModal = document.getElementById("info-modal");
+  const infoButton = document.getElementById("info-button");
+  function setInfo(open) {
+    infoModal.hidden = !open;
+    document.body.classList.toggle("modal-open", open);
+    if (open) infoModal.querySelector(".modal-close").focus(); else infoButton.focus();
+  }
+  infoButton.addEventListener("click", () => setInfo(true));
+  document.getElementById("info-close").addEventListener("click", () => setInfo(false));
+  infoModal.addEventListener("pointerdown", (event) => { if (event.target === infoModal) setInfo(false); });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !infoModal.hidden) setInfo(false); });
+
   async function loadSchema() {
     try {
       let response = await fetch("api/schema");
