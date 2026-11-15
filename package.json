@@ -1,0 +1,13 @@
+{
+  "name": "adventureworks-dw-erd",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive, local AdventureWorksDW2020 schema explorer",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node scripts/build-static.js"
+  },
+  "dependencies": {
+    "mssql": "^11.0.1"
+  }
+}

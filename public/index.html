@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f6fb">
+    <title>AdventureWorksDW · Schema Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="AdventureWorks schema explorer home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M5 8.5 16 3l11 5.5v15L16 29 5 23.5z"/><path d="m5 8.5 11 5.7 11-5.7M16 14.2V29m-5.4-18.2v5.4m10.8-5.4v5.4"/></svg>
+          </span>
+          <span class="brand-copy"><strong>schema<span>studio</span></strong><small>DATA EXPLORER</small></span>
+        </a>
+        <div class="topbar-right">
+          <span class="connection-pill" id="connection-pill"><i></i><span>Connecting</span></span>
+          <span class="topbar-divider"></span>
+          <span class="database-name"><span class="db-icon">▤</span> AdventureWorks<span class="db-muted">DW2020</span></span>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="intro">
+          <div class="intro-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> DATABASE BLUEPRINT</div>
+            <h1>See how your data <span>connects.</span></h1>
+            <p>Explore tables, follow relationships, and get to know your warehouse.</p>
+          </div>
+          <div class="stat-cards" aria-label="Database overview">
+            <div class="stat-card"><span class="stat-icon tables-icon">▦</span><span class="stat-value" id="table-count">—</span><span class="stat-label">TABLES</span></div>
+            <div class="stat-card"><span class="stat-icon relation-icon">⌘</span><span class="stat-value" id="relation-count">—</span><span class="stat-label">RELATIONSHIPS</span></div>
+            <div class="stat-card"><span class="stat-icon schema-icon">◈</span><span class="stat-value" id="schema-count">—</span><span class="stat-label">SCHEMAS</span></div>
+          </div>
+        </section>
+
+        <section class="explorer" aria-label="Interactive database diagram">
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <div class="view-label"><span class="view-label-icon">⌘</span><strong>Relationship map</strong><span class="live-badge"><i></i> LIVE</span></div>
+              <span class="toolbar-separator"></span>
+              <label class="search-box">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.9"/><path d="m13.2 13.2 4 4"/></svg>
+                <input id="search-input" type="search" placeholder="Find a table or column..." autocomplete="off" aria-label="Find a table or column">
+                <kbd>/</kbd>
+              </label>
+              <label class="schema-filter">
+                <span>Schema</span>
+                <select id="schema-filter" aria-label="Filter by schema"><option value="">All schemas</option></select>
+                <span class="select-chevron">⌄</span>
+              </label>
+              <div class="table-picker" id="table-picker">
+                <button type="button" class="picker-button" id="picker-button" aria-haspopup="true" aria-expanded="false">Tables <span class="picker-count" id="picker-count">All</span> <span class="picker-caret">⌄</span></button>
+                <div class="picker-menu" id="picker-menu" hidden>
+                  <input id="picker-search" type="search" placeholder="Filter list..." autocomplete="off" aria-label="Filter table list">
+                  <div class="picker-actions">
+                    <button type="button" id="picker-all">Select shown</button>
+                    <button type="button" id="picker-clear">Clear (show all)</button>
+                  </div>
+                  <div class="picker-list" id="picker-list"></div>
+                </div>
+              </div>
+            </div>
+            <div class="toolbar-right">
+              <span class="diagram-hint"><span class="hint-dot"></span> Drag to pan <span class="hint-divider">·</span> Scroll to zoom</span>
+              <span class="toolbar-separator"></span>
+              <button class="icon-button" id="fit-button" title="Fit diagram to view" aria-label="Fit diagram to view"><svg viewBox="0 0 20 20"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg></button>
+              <button class="icon-button" id="zoom-out" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.8"/><path d="m13 13 4 4M6 8.5h5"/></svg></button>
+              <span class="zoom-level" id="zoom-level">100%</span>
+              <button class="icon-button" id="zoom-in" title="Zoom in" aria-label="Zoom in"><svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.8"/><path d="m13 13 4 4M6 8.5h5m-2.5-2.5v5"/></svg></button>
+            </div>
+          </div>
+
+          <div class="diagram-layout">
+            <div class="canvas-wrap" id="canvas-wrap">
+              <div class="canvas-state" id="canvas-state">
+                <span class="loading-orbit"></span>
+                <strong>Mapping your warehouse</strong>
+                <span>Reading table and relationship metadata…</span>
+              </div>
+              <svg id="diagram" class="diagram" role="img" aria-label="Interactive entity relationship diagram">
+                <defs>
+                  <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="150%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#253452" flood-opacity=".08"/>
+                  </filter>
+                  <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0 0 8 4 0 8z" fill="#91a2bc"/>
+                  </marker>
+                </defs>
+                <g id="diagram-content"></g>
+              </svg>
+            </div>
+
+          </div>
+
+          <div class="diagram-footer">
+            <div class="legend"><span class="legend-item"><i class="legend-line"></i> Foreign key</span><span class="legend-item"><i class="legend-key">◆</i> Primary key</span><span class="legend-item"><i class="legend-column"></i> Column</span></div>
+            <span class="canvas-tip">Hover a table to trace its relationships <span>✦</span></span>
+          </div>
+        </section>
+        <footer class="page-footer"><span>BUILT FOR CURIOUS MINDS</span><span id="last-updated">ADVENTUREWORKS DATA WAREHOUSE</span></footer>
+      </main>
+    </div>
+    <script src="app.js" defer></script>
+  </body>
+</html>
