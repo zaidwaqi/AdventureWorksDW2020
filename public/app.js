@@ -21,7 +21,7 @@
   let relationships = [];
   let nodes = new Map();
   let visibleKeys = null;
-  const picked = new Set();
+  const picked = new Set(["DimEmployee", "DimEmployeeSalesTerritory", "DimProduct", "DimReseller", "DimSalesTerritory", "FactResellerSales"].map((name) => `dbo.${name}`));
   const pickerButton = document.getElementById("picker-button");
   const pickerMenu = document.getElementById("picker-menu");
   const pickerSearch = document.getElementById("picker-search");
@@ -322,7 +322,8 @@
     if (changed) {
       visibleKeys = next;
       layoutTables();
-      fitDiagram();
+      view = { x: 0, y: 0, scale: 1 };
+      updateViewBox();
     }
     content.querySelectorAll(".table-card").forEach((card) => {
       const key = card.dataset.table;
@@ -436,7 +437,7 @@
         schemaFilter.append(option);
       });
       renderPicker();
-      applyFilters();
+      pickerChanged();
     } catch (error) {
       errorMessage(error.message);
     }
