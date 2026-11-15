@@ -146,7 +146,7 @@
     relationships.forEach((relationship) => {
       const from = nodes.get(relationship.from);
       const to = nodes.get(relationship.to);
-      if (!from || !to) return;
+      if (!from || !to || relationship.from === relationship.to) return;
       const fc = colOf(from);
       const tc = colOf(to);
       let fromSide = "right";
@@ -229,13 +229,22 @@
     );
 
     const fkNames = foreignKeyColumns(key);
+    const selfReferences = relationships.filter((relation) => relation.from === key && relation.to === key);
     node.shown.forEach((column, index) => {
       const rowY = headerHeight + 17 + index * 20;
       const isFk = fkNames.has(column.name);
       if (column.primaryKey) group.append(svgElement("text", { x: 13, y: rowY, class: "key-badge pk" }, "PK"));
-      if (isFk) group.append(svgElement("text", { x: column.primaryKey ? 28 : 13, y: rowY, class: "key-badge fk" }, "FK"));
+      if (isFk) {
+        const selfRef = selfReferences.find((relation) => relation.columns.some((pair) => pair.from === column.name));
+        const fkBadge = svgElement("text", { x: column.primaryKey ? 28 : 13, y: rowY, class: "key-badge fk" }, selfRef ? "FK↻" : "FK");
+        if (selfRef) {
+          const pair = selfRef.columns.find((item) => item.from === column.name);
+          fkBadge.append(svgElement("title", {}, `Self-reference: ${pair.from} → ${pair.to} (${cardinality(selfRef).text.toLowerCase()})`));
+        }
+        group.append(fkBadge);
+      }
       group.append(
-        svgElement("text", { x: 46, y: rowY, class: "column-label" }, truncate(column.name, 19)),
+        svgElement("text", { x: 50, y: rowY, class: "column-label" }, truncate(column.name, 18)),
         svgElement("text", { x: width - 11, y: rowY, class: "column-type-label", "text-anchor": "end" }, truncate(column.type, 15)),
       );
       if (index < node.shown.length - 1) {
