@@ -195,6 +195,10 @@
       });
     });
 
+    edges.forEach((edge) => {
+      if (Math.abs(edge.startY - edge.endY) <= 10) edge.startY = edge.endY = (edge.startY + edge.endY) / 2;
+    });
+
     edges.forEach(({ relationship, from, to, fromSide, toSide, startY, endY, laneX }) => {
       const startX = fromSide === "right" ? from.x + from.width : from.x;
       const endX = toSide === "right" ? to.x + to.width : to.x;
