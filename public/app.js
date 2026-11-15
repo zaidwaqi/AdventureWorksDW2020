@@ -79,6 +79,10 @@
     return node.y + headerHeight + 14 + Math.max(0, index) * 20;
   }
 
+  function isFact(table) {
+    return /^fact/i.test(table.name);
+  }
+
   function tableKey(table) {
     return `${table.schema}.${table.name}`;
   }
@@ -108,15 +112,27 @@
       const cols = Math.min(columnCount, schemaTables.length);
       const colY = new Array(cols).fill(y + 55);
       headings.push({ schema, y: y + 28, cols });
+      const hasFacts = cols === 3 && schemaTables.some(isFact) && schemaTables.some((table) => !isFact(table));
+      const factNodes = [];
       schemaTables.forEach((table) => {
-        let c = 0;
-        for (let i = 1; i < cols; i++) if (colY[i] < colY[c]) c = i;
+        const choices = hasFacts ? (isFact(table) ? [1] : [0, 2]) : [...colY.keys()];
+        let c = choices[0];
+        for (const i of choices) if (colY[i] < colY[c]) c = i;
         const shown = shownColumns(table);
         const height = columnHeight(table, shown);
         const key = `${table.schema}.${table.name}`;
-        nodes.set(key, { x: 30 + c * (laneWidth + laneGap), y: colY[c], width: cardWidth, height, table, shown });
+        const node = { x: 30 + c * (laneWidth + laneGap), y: colY[c], width: cardWidth, height, table, shown };
+        nodes.set(key, node);
+        if (hasFacts && c === 1) factNodes.push(node);
         colY[c] += height + cardGap;
       });
+      if (factNodes.length) {
+        const shift = (Math.max(colY[0], colY[2]) - colY[1]) / 2;
+        if (shift > 0) {
+          factNodes.forEach((node) => { node.y += shift; });
+          colY[1] += shift;
+        }
+      }
       y = Math.max(...colY) + 10;
     });
 
